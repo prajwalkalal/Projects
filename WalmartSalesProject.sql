@@ -172,6 +172,19 @@ ORDER BY avg_tax DESC;
 
 -- 9. Fetch each product line and add a column to those product line showing "Good", "Bad". Good if its greater than average sales
 
+SELECT 
+	AVG(quantity) AS avg_qnty
+FROM sales;
+
+SELECT
+	product_line,
+	CASE
+		WHEN AVG(quantity) > 6 THEN "Good"
+        ELSE "Bad"
+    END AS remark
+FROM sales
+GROUP BY product_line;
+
 -- 10. Which branch sold more products than average product sold?
 
 SELECT 
